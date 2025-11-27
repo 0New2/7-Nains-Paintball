@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7Nains Paintball - Saint-George sur Eure</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #0a0a0a;
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        /* Header et Navigation */
+        header {
+            background: linear-gradient(135deg, #1a0000 0%, #000000 100%);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(230, 57, 70, 0.4);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            transition: transform 0.3s;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo img {
+            height: 80px;
+            width: auto;
+            filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.8));
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: #E63946;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                        url('https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?w=1200') center/cover;
+            height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: #E63946;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.9);
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: #D4A574;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #E63946 0%, #c42a36 100%);
+            color: #fff;
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: inline-block;
+            border: 2px solid #E63946;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(230, 57, 70, 0.6);
+        }
+
+        /* Sections */
+        section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #E63946;
+            text-align: center;
+        }
+
+        /* À propos */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            color: #ddd;
+        }
+
+        .about-image {
+            height: 400px;
+            background: url('https://images.unsplash.com/photo-1588731241959-2e99e0d73f2b?w=800') center/cover;
+            border-radius: 10px;
+            border: 3px solid #E63946;
+            box-shadow: 0 5px 20px rgba(230, 57, 70, 0.4);
+        }
+
+        /* Tarifs */
+        .tarifs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .tarif-card {
+            background: linear-gradient(135deg, #1a0000 0%, #0a0a0a 100%);
+            padding: 2rem;
+            border-radius: 10px;
+            border: 2px solid #E63946;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .tarif-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(230, 57, 70, 0.5);
+        }
+
+        .tarif-card h3 {
+            color: #D4A574;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .tarif-card .price {
+            font-size: 2.5rem;
+            color: #E63946;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+
+        .tarif-card ul {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .tarif-card li {
+            padding: 0.5rem;
+            color: #ccc;
+        }
+
+        /* Terrain */
+        .terrain-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .gallery-item {
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            border: 2px solid #E63946;
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        .gallery-item:nth-child(1) {
+            background-image: url('https://images.unsplash.com/photo-1528914457963-4b5d1e2e1f7c?w=500');
+        }
+
+        .gallery-item:nth-child(2) {
+            background-image: url('https://images.unsplash.com/photo-1511447333015-45b65e60f6d5?w=500');
+        }
+
+        .gallery-item:nth-child(3) {
+            background-image: url('https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?w=500');
+        }
+
+        .gallery-item:nth-child(4) {
+            background-image: url('https://images.unsplash.com/photo-1588731241959-2e99e0d73f2b?w=500');
+        }
+
+        /* Accès */
+        .acces-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .acces-info {
+            background: linear-gradient(135deg, #1a0000 0%, #0a0a0a 100%);
+            padding: 2rem;
+            border-radius: 10px;
+            border: 2px solid #E63946;
+        }
+
+        .acces-info h3 {
+            color: #D4A574;
+            margin-bottom: 1rem;
+        }
+
+        .acces-info p {
+            margin-bottom: 0.8rem;
+            color: #ddd;
+        }
+
+        .map {
+            height: 400px;
+            background: #222;
+            border-radius: 10px;
+            border: 2px solid #ff4500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffa500;
+        }
+
+        /* Réservation */
+        .reservation-form {
+            max-width: 600px;
+            margin: 2rem auto;
+            background: linear-gradient(135deg, #1a0000 0%, #0a0a0a 100%);
+            padding: 2rem;
+            border-radius: 10px;
+            border: 2px solid #ff4500;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #D4A574;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #E63946;
+            background: #1a1a1a;
+            color: #fff;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #1a0000 0%, #000000 100%);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+            border-top: 3px solid #E63946;
+        }
+
+        footer p {
+            color: #D4A574;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-content,
+            .acces-content {
+                grid-template-columns: 1fr;
+            }
+
+            .tarifs-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="#accueil" class="logo">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==" alt="7 Nains Paintball Logo" id="logoImg">
+            </a>
+            <ul class="nav-links">
+                <li><a href="#accueil">Accueil</a></li>
+                <li><a href="#tarifs">Tarifs</a></li>
+                <li><a href="#terrain">Terrain</a></li>
+                <li><a href="#equipement">Équipement</a></li>
+                <li><a href="#acces">Accès</a></li>
+                <li><a href="#reservation">Réserver</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero" id="accueil">
+        <div class="hero-content">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==" alt="7 Nains Paintball" style="max-width: 350px; width: 100%; margin-bottom: 2rem; filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.9));" id="heroLogo">
+            <h1>7Nains Paintball</h1>
+            <p>Votre terrain de paintball à Saint-George sur Eure</p>
+            <a href="#reservation" class="btn">Réserver maintenant</a>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2>À propos</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>Bienvenue chez 7Nains Paintball, votre association de paintball située au Complexe sportif de Saint-George sur Eure.</p>
+                <p>Nous proposons des sessions de paintball pour tous les niveaux, que vous soyez débutant ou joueur expérimenté. Notre terrain offre un cadre idéal pour des parties entre amis, des événements d'entreprise ou des anniversaires.</p>
+                <p>Rejoignez-nous pour vivre des moments d'adrénaline et de stratégie dans une ambiance conviviale !</p>
+            </div>
+            <div class="about-image"></div>
+        </div>
+    </section>
+
+    <section id="tarifs">
+        <h2>Nos Tarifs</h2>
+        <div class="tarifs-grid">
+            <div class="tarif-card">
+                <h3>Forfait 250 billes</h3>
+                <div class="price">25€</div>
+                <ul>
+                    <li>250 billes de paintball</li>
+                    <li>Combinaison intégrale</li>
+                    <li>Masque de protection intégral</li>
+                    <li>Lanceur réglé et contrôlé</li>
+                </ul>
+            </div>
+            <div class="tarif-card">
+                <h3>Forfait 500 billes</h3>
+                <div class="price">40€</div>
+                <ul>
+                    <li>500 billes de paintball</li>
+                    <li>Combinaison intégrale</li>
+                    <li>Masque de protection intégral</li>
+                    <li>Lanceur réglé et contrôlé</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="terrain">
+        <h2>Notre Terrain</h2>
+        <p style="text-align: center; color: #ddd; margin-bottom: 2rem;">
+            Découvrez notre terrain de paintball avec différents obstacles et zones stratégiques pour des parties intenses !
+        </p>
+        <div class="terrain-gallery">
+            <div class="gallery-item"></div>
+            <div class="gallery-item"></div>
+            <div class="gallery-item"></div>
+            <div class="gallery-item"></div>
+        </div>
+        <p style="text-align: center; color: #ffa500; margin-top: 2rem; font-style: italic;">
+            📸 Photos temporaires - Remplacez-les par vos vraies photos du terrain !
+        </p>
+    </section>
+
+    <section id="equipement">
+        <h2>🛡️ Équipement & Sécurité</h2>
+        <div style="background: linear-gradient(135deg, #1a0000 0%, #0a0a0a 100%); padding: 2.5rem; border-radius: 10px; border: 2px solid #ff4500;">
+            <h3 style="color: #D4A574; font-size: 1.8rem; margin-bottom: 1.5rem;">Tout l'équipement fourni et inclus dans le tarif :</h3>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+                <div style="padding: 1rem; background: rgba(230, 57, 70, 0.15); border-radius: 8px; border-left: 4px solid #E63946;">
+                    <p style="color: #fff; font-size: 1.1rem; margin: 0;">✅ <strong>Lanceur de paintball</strong><br><span style="color: #ddd; font-size: 0.95rem;">Réglé, contrôlé et en parfait état</span></p>
+                </div>
+                <div style="padding: 1rem; background: rgba(230, 57, 70, 0.15); border-radius: 8px; border-left: 4px solid #E63946;">
+                    <p style="color: #fff; font-size: 1.1rem; margin: 0;">✅ <strong>Masque de protection intégral</strong><br><span style="color: #ddd; font-size: 0.95rem;">Obligatoire et fourni à tous</span></p>
+                </div>
+                <div style="padding: 1rem; background: rgba(230, 57, 70, 0.15); border-radius: 8px; border-left: 4px solid #E63946;">
+                    <p style="color: #fff; font-size: 1.1rem; margin: 0;">✅ <strong>Combinaison intégrale</strong><br><span style="color: #ddd; font-size: 0.95rem;">Pour protéger vos vêtements</span></p>
+                </div>
+                <div style="padding: 1rem; background: rgba(230, 57, 70, 0.15); border-radius: 8px; border-left: 4px solid #E63946;">
+                    <p style="color: #fff; font-size: 1.1rem; margin: 0;">✅ <strong>Billes de paintball</strong><br><span style="color: #ddd; font-size: 0.95rem;">Selon votre forfait (250 ou 500)</span></p>
+                </div>
+                <div style="padding: 1rem; background: rgba(230, 57, 70, 0.15); border-radius: 8px; border-left: 4px solid #E63946;">
+                    <p style="color: #fff; font-size: 1.1rem; margin: 0;">✅ <strong>Protections adaptées</strong><br><span style="color: #ddd; font-size: 0.95rem;">Plastrons disponibles sur demande</span></p>
+                </div>
+            </div>
+
+            <h3 style="color: #D4A574; font-size: 1.6rem; margin-bottom: 1rem;">📋 Conseils pratiques :</h3>
+            <ul style="color: #ddd; font-size: 1.1rem; line-height: 2; list-style: none; padding-left: 0;">
+                <li>👟 <strong>Chaussures fermées recommandées</strong> (baskets, chaussures de sport)</li>
+                <li>🌦️ Prévoir des vêtements adaptés à la météo (casquette en été, vêtements chauds en hiver)</li>
+            </ul>
+
+            <div style="background: rgba(212, 165, 116, 0.2); padding: 1.5rem; border-radius: 8px; border: 2px solid #D4A574; margin-top: 2rem;">
+                <p style="color: #D4A574; font-size: 1.15rem; margin: 0; text-align: center;">
+                    <strong>💡 Premier paintball ?</strong><br><br>
+                    <span style="color: #ddd; font-size: 1.05rem;">Pas d'inquiétude ! Nos animateurs vous expliqueront toutes les règles de sécurité avant de commencer.</span>
+                </p>
+            </div>
+
+            <div style="background: rgba(212, 165, 116, 0.2); padding: 1.5rem; border-radius: 8px; border: 2px solid #D4A574; margin-top: 1.5rem;">
+                <p style="color: #D4A574; font-size: 1.15rem; margin: 0; text-align: center;">
+                    <strong>🎯 Encadrement professionnel</strong><br><br>
+                    <span style="color: #ddd; font-size: 1.05rem;">Votre groupe est encadré du début à la fin par nos équipes. Un ou plusieurs arbitres sont présents sur le terrain pendant toutes les parties pour gérer la sécurité et animer votre session.</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="acces">
+        <h2>Comment nous trouver</h2>
+        <div class="acces-content">
+            <div class="acces-info">
+                <h3>📍 Adresse</h3>
+                <p><strong>Les 7 Nains Paintball</strong></p>
+                <p>Complexe sportif Saint-George sur Eure</p>
+                <p>28190 Saint-George sur Eure</p>
+                <p>Eure-et-Loir, France</p>
+                
+                <h3 style="margin-top: 2rem;">🚗 Accès</h3>
+                <p>Le terrain est facilement accessible en voiture.</p>
+                <p>Parking disponible sur place.</p>
+                
+                <h3 style="margin-top: 2rem;">📞 Contact</h3>
+                <p>Email : contact@7nainspaintball.fr</p>
+                <p>Téléphone : [Votre numéro]</p>
+            </div>
+            <div style="height: 400px; border-radius: 10px; border: 2px solid #E63946; overflow: hidden;">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1324.1209155136046!2d1.3648557!3d48.4135014!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e3f561c1f874dd%3A0x62dea66c72adbac!2sLes%207%20Nains%20Paintball!5e0!3m2!1sfr!2sfr!4v1764208414048!5m2!1sfr!2sfr" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <section id="reservation">
+        <h2>Réserver une session</h2>
+        <form class="reservation-form">
+            <div class="form-group">
+                <label for="nom">Nom complet *</label>
+                <input type="text" id="nom" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email *</label>
+                <input type="email" id="email" required>
+            </div>
+            <div class="form-group">
+                <label for="tel">Téléphone *</label>
+                <input type="tel" id="tel" required>
+            </div>
+            <div class="form-group">
+                <label for="date">Date souhaitée *</label>
+                <input type="date" id="date" required>
+            </div>
+            
+            <h3 style="color: #D4A574; margin: 2rem 0 1rem 0; text-align: center;">Répartition de votre groupe</h3>
+            
+            <div class="form-group">
+                <label for="forfait250">Forfait 250 billes (25€/personne)</label>
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <input type="number" id="forfait250" min="0" value="0" style="flex: 1;">
+                    <span style="color: #D4A574; font-weight: bold; min-width: 80px;" id="prix250">× 25€ = 0€</span>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="forfait500">Forfait 500 billes (40€/personne)</label>
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <input type="number" id="forfait500" min="0" value="0" style="flex: 1;">
+                    <span style="color: #D4A574; font-weight: bold; min-width: 80px;" id="prix500">× 40€ = 0€</span>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="message">Message / Informations complémentaires</label>
+                <textarea id="message"></textarea>
+            </div>
+            <button type="submit" class="btn">Envoyer la demande</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 7Nains Paintball - Tous droits réservés</p>
+        <p>Saint-George sur Eure, Eure-et-Loir</p>
+    </footer>
+
+    <!-- Lightbox pour les photos -->
+    <div id="lightbox" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 9999; justify-content: center; align-items: center;">
+        <span id="closeLightbox" style="position: absolute; top: 30px; right: 50px; font-size: 50px; color: white; cursor: pointer; z-index: 10000;">&times;</span>
+        <img id="lightboxImg" style="max-width: 90%; max-height: 90%; border-radius: 10px;">
+        <button id="prevBtn" style="position: absolute; left: 30px; top: 50%; transform: translateY(-50%); background: rgba(230, 57, 70, 0.9); border: none; color: white; font-size: 30px; padding: 15px 25px; cursor: pointer; border-radius: 5px;">❮</button>
+        <button id="nextBtn" style="position: absolute; right: 30px; top: 50%; transform: translateY(-50%); background: rgba(230, 57, 70, 0.9); border: none; color: white; font-size: 30px; padding: 15px 25px; cursor: pointer; border-radius: 5px;">❯</button>
+    </div>
+
+    <script>
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animations au scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.tarif-card, .gallery-item, .acces-info').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(50px)';
+            el.style.transition = 'all 0.8s ease-out';
+            observer.observe(el);
+        });
+
+        // Compteurs animés
+        let countersStarted = false;
+        
+        function animateCounter(element, target, duration) {
+            let current = 0;
+            const increment = target / (duration / 16);
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = target + '+';
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current) + '+';
+                }
+            }, 16);
+        }
+
+        window.addEventListener('scroll', () => {
+            const aboutSection = document.querySelector('#about');
+            const rect = aboutSection.getBoundingClientRect();
+            if (rect.top < window.innerHeight && !countersStarted) {
+                countersStarted = true;
+                const counter1 = document.createElement('div');
+                counter1.className = 'counter';
+                counter1.innerHTML = '<span id="count1">0</span><br>Parties organisées';
+                const counter2 = document.createElement('div');
+                counter2.className = 'counter';
+                counter2.innerHTML = '<span id="count2">0</span><br>Joueurs satisfaits';
+                
+                const countersContainer = document.createElement('div');
+                countersContainer.style.display = 'flex';
+                countersContainer.style.justifyContent = 'space-around';
+                countersContainer.style.marginTop = '3rem';
+                countersContainer.style.textAlign = 'center';
+                
+                const style = document.createElement('style');
+                style.textContent = '.counter { font-size: 1.2rem; color: #ddd; } .counter span { font-size: 3rem; color: #E63946; font-weight: bold; display: block; margin-bottom: 0.5rem; }';
+                document.head.appendChild(style);
+                
+                countersContainer.appendChild(counter1);
+                countersContainer.appendChild(counter2);
+                aboutSection.appendChild(countersContainer);
+                
+                animateCounter(document.getElementById('count1'), 500, 2000);
+                animateCounter(document.getElementById('count2'), 150, 2000);
+            }
+        });
+
+        // Lightbox pour la galerie
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const closeLightbox = document.getElementById('closeLightbox');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        let currentImageIndex = 0;
+
+        const images = [
+            'https://images.unsplash.com/photo-1528914457963-4b5d1e2e1f7c?w=1200',
+            'https://images.unsplash.com/photo-1511447333015-45b65e60f6d5?w=1200',
+            'https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?w=1200',
+            'https://images.unsplash.com/photo-1588731241959-2e99e0d73f2b?w=1200'
+        ];
+
+        galleryItems.forEach((item, index) => {
+            item.style.cursor = 'pointer';
+            item.addEventListener('click', () => {
+                currentImageIndex = index;
+                lightboxImg.src = images[currentImageIndex];
+                lightbox.style.display = 'flex';
+            });
+        });
+
+        closeLightbox.addEventListener('click', () => {
+            lightbox.style.display = 'none';
+        });
+
+        document.getElementById('prevBtn').addEventListener('click', () => {
+            currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+            lightboxImg.src = images[currentImageIndex];
+        });
+
+        document.getElementById('nextBtn').addEventListener('click', () => {
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            lightboxImg.src = images[currentImageIndex];
+        });
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                lightbox.style.display = 'none';
+            }
+        });
+
+        // Calculateur de prix pour réservation avec répartition
+        const forfait250Input = document.getElementById('forfait250');
+        const forfait500Input = document.getElementById('forfait500');
+        const prix250Span = document.getElementById('prix250');
+        const prix500Span = document.getElementById('prix500');
+        
+        const prixTotal = document.createElement('div');
+        prixTotal.style.cssText = 'margin: 2rem 0 1.5rem 0; padding: 1.5rem; background: linear-gradient(135deg, #E63946 0%, #c42a36 100%); border-radius: 10px; text-align: center;';
+        prixTotal.innerHTML = '<p style="margin: 0; font-size: 1.2rem; color: white;">Total participants : <span id="totalParticipants">0</span></p><p id="totalPrice" style="margin: 0.5rem 0 0 0; font-size: 2.5rem; font-weight: bold; color: white;">PRIX TOTAL : 0€</p>';
+        
+        document.querySelector('.reservation-form').insertBefore(prixTotal, document.querySelector('.reservation-form button'));
+
+        function calculatePrice() {
+            const nb250 = parseInt(forfait250Input.value) || 0;
+            const nb500 = parseInt(forfait500Input.value) || 0;
+            
+            const total250 = nb250 * 25;
+            const total500 = nb500 * 40;
+            const totalPrice = total250 + total500;
+            const totalParticipants = nb250 + nb500;
+            
+            prix250Span.textContent = `× 25€ = ${total250}€`;
+            prix500Span.textContent = `× 40€ = ${total500}€`;
+            
+            document.getElementById('totalParticipants').textContent = totalParticipants;
+            document.getElementById('totalPrice').textContent = `PRIX TOTAL : ${totalPrice}€`;
+        }
+
+        forfait250Input.addEventListener('input', calculatePrice);
+        forfait500Input.addEventListener('input', calculatePrice);
+
+        // Gestion du formulaire
+        document.querySelector('.reservation-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const total = document.getElementById('totalPrice').textContent;
+            alert(`Demande de réservation envoyée !\n\nMontant total : ${total}\n\nNous vous contacterons rapidement pour confirmer votre réservation.`);
+        });
+    </script>
+</body>
+</html>
