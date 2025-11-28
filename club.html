@@ -34,15 +34,17 @@
             max-width: 1200px;
             margin: 0 auto;
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
             padding: 0 2rem;
+            position: relative;
         }
 
         .logo {
             display: flex;
             align-items: center;
             transition: transform 0.3s;
+            z-index: 1001;
         }
 
         .logo:hover {
@@ -53,6 +55,40 @@
             height: 80px;
             width: auto;
             filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.8));
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: #4FC3F7;
+        }
+
+        /* Menu Hamburger */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 30px;
+            height: 3px;
+            background-color: #4FC3F7;
+            margin: 4px 0;
+            transition: 0.3s;
+            border-radius: 3px;
         }
 
         /* Hero */
@@ -320,6 +356,49 @@
 
         /* Responsive */
         @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                right: -100%;
+                top: 0;
+                flex-direction: column;
+                background: linear-gradient(135deg, #1B2A4E 0%, #0a1929 100%);
+                width: 70%;
+                height: 100vh;
+                padding: 100px 2rem 2rem 2rem;
+                gap: 2rem;
+                transition: right 0.3s ease-in-out;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
+                z-index: 1000;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links a {
+                font-size: 1.5rem;
+            }
+
+            .hamburger.active span:nth-child(1) {
+                transform: rotate(-45deg) translate(-6px, 6px);
+            }
+
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active span:nth-child(3) {
+                transform: rotate(45deg) translate(-6px, -6px);
+            }
+
+            .logo img {
+                height: 70px;
+            }
+
             .hero h1 {
                 font-size: 2.5rem;
             }
@@ -353,8 +432,23 @@
     <header>
         <nav>
             <a href="index.html" class="logo">
-                <img src="logo%207n%20transpa.png" alt="7 Nains Paintball Logo">
+                <img src="favicon-club.png" alt="7 Nains Paintball Logo">
             </a>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html#accueil">Accueil</a></li>
+                <li><a href="index.html#tarifs">Tarifs</a></li>
+                <li><a href="index.html#terrain">Terrain</a></li>
+                <li><a href="index.html#equipement">Équipement</a></li>
+                <li><a href="index.html#acces">Accès</a></li>
+                <li><a href="index.html#reservation">Réserver</a></li>
+                <li><a href="club.html">Le Club</a></li>
+                <li><a href="equipe.html">L'Équipe</a></li>
+            </ul>
         </nav>
     </header>
 
@@ -473,6 +567,23 @@
     </footer>
 
     <script>
+        // Menu Hamburger
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Fermer le menu quand on clique sur un lien
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
         // Animation au scroll
         const observerOptions = {
             threshold: 0.1,
