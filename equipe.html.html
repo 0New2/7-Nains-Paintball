@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L'Équipe - 7 Nains Paintball</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #0a1929 0%, #1B2A4E 100%);
+            color: white;
+            padding: 2rem;
+            min-height: 100vh;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 3rem;
+            color: #4FC3F7;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 20px rgba(79, 195, 247, 0.5);
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 1.3rem;
+            margin-bottom: 4rem;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .card-container {
+            perspective: 1000px;
+            height: 500px;
+        }
+
+        .card {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: rotateY(180deg);
+        }
+
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 3px solid #4FC3F7;
+            box-shadow: 0 10px 30px rgba(79, 195, 247, 0.3);
+        }
+
+        .card-front img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-back {
+            background: linear-gradient(135deg, #4FC3F7, #2196F3);
+            transform: rotateY(180deg);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .card-back.coach {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+        }
+
+        .card-back h3 {
+            font-size: 2rem;
+            color: #1B2A4E;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .stats {
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .stat-box {
+            background: rgba(255, 255, 255, 0.3);
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: #1B2A4E;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #1B2A4E;
+        }
+
+        .back-btn {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .back-btn a {
+            color: #4FC3F7;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .back-btn a:hover {
+            color: #64D8FF;
+        }
+
+        .no-photo {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #4FC3F7, #2196F3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8rem;
+            font-weight: bold;
+            color: #1B2A4E;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            .cards-grid { grid-template-columns: 1fr; }
+            .card-container { height: 450px; }
+        }
+    </style>
+</head>
+<body>
+    <h1>🏆 L'Équipe CCMP</h1>
+    <p class="subtitle">Notre roster 3v3 - Survolez les cartes pour voir les stats !</p>
+
+    <div class="cards-grid">
+        <!-- Pierre -->
+        <div class="card-container">
+            <div class="card">
+                <div class="card-face card-front">
+                    <img src="pierre.jpg" alt="Pierre Snake">
+                </div>
+                <div class="card-face card-back">
+                    <h3>Pierre "Snake"</h3>
+                    <div class="stats">
+                        <div class="stat-box">
+                            <div class="stat-label">TIR</div>
+                            <div class="stat-value">89</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-label">VIT</div>
+                            <div class="stat-value">92</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-label">GLI</div>
+                            <div class="stat-value">87</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-label">COM</div>
+                            <div class="stat-value">83</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Yan -->
+        <div class="card-container">
+            <div class="card">
+                <div class="card-face card-front">
+                    <img src="yan.jpg" alt="Yan Mid">
+                </div>
+                <div class="card-face card-back">
+                    <h3>Yan "Mid"</h3>
+                    <div class="stats">
+                        <div class="stat-box">
+                            <div class="stat-label">TIR</div>
+                            <div class="stat-value">91</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-label">VIT</div>
+                            <div class="stat-value">85</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-label">GLI</div>
+                            <div class="stat-value">78</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-label">COM</div>
+                            <div class="stat-value">94</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Micka -->
+        <div class="card-container">
+            <div class="card">
+                <div class="card-face card-front">
+                    <img src="micka.jpg" alt="Micka Snake">
+                </div>
+                <div class="card-face card-back">
+                    <h3>Micka "Snake"</h3>
+                    <div class="stats">
+                        <div class="stat-box">
+                            <div class="stat-label">TIR</div>
+                            <div class="stat-value">88</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-label">VIT</div>
+                            <div class="stat-value">93</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-label">GLI</div>
+                            <div class="stat-value">90</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-label">COM</div>
+                            <div class="stat-value">80</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Thomas -->
+        <div class="card-container">
+            <div class="card">
+                <div class="card-face card-front">
+                    <img src="thomas.jpg" alt="Thomas Voile">
+                </div>
+                <div class="card-face card-back">
+                    <h3>Thomas "Voile"</h3>
+                    <div class="stats">
+                        <div class="stat-box">
+                            <div class="stat-label">TIR</div>
+                            <div class="stat-value">86</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-label">VIT</div>
+                            <div class="stat-value">89</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-label">GLI</div>
+                            <div class="stat-value">84</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-label">COM</div>
+                            <div class="stat-value">91</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Laulau -->
+        <div class="card-container">
+            <div class="card">
+                <div class="card-face card-front">
+                    <div class="no-photo">L</div>
+                </div>
+                <div class="card-face card-back">
+                    <h3>Laulau "Voile"</h3>
+                    <div class="stats">
+                        <div class="stat-box">
+                            <div class="stat-label">TIR</div>
+                            <div class="stat-value">82</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-label">VIT</div>
+                            <div class="stat-value">88</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-label">GLI</div>
+                            <div class="stat-value">85</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-label">COM</div>
+                            <div class="stat-value">79</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pascal -->
+        <div class="card-container">
+            <div class="card">
+                <div class="card-face card-front">
+                    <img src="pascal.jpg" alt="Pascal">
+                </div>
+                <div class="card-face card-back coach">
+                    <h3>Pascal</h3>
+                    <div class="stats">
+                        <div class="stat-box">
+                            <div class="stat-label">LEAD</div>
+                            <div class="stat-value">95</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-label">TACT</div>
+                            <div class="stat-value">93</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-label">EXP</div>
+                            <div class="stat-value">98</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-label">MOTI</div>
+                            <div class="stat-value">94</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="back-btn">
+        <a href="club.html">← Retour à la page Club</a>
+    </div>
+</body>
+</html>

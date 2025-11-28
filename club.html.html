@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le Club - 7 Nains Paintball</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #0a1929 0%, #1B2A4E 100%);
+            color: #fff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #1B2A4E 0%, #0a1929 100%);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(79, 195, 247, 0.4);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            transition: transform 0.3s;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo img {
+            height: 80px;
+            width: auto;
+            filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.8));
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?w=1200') center/cover;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            color: #4FC3F7;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.9);
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            color: #fff;
+        }
+
+        /* Sections */
+        section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #4FC3F7;
+            text-align: center;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #4FC3F7, #1B2A4E);
+            margin: 1rem auto 0;
+        }
+
+        /* Mission */
+        .mission {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 4rem;
+        }
+
+        .mission-box {
+            background: linear-gradient(135deg, rgba(79, 195, 247, 0.2) 0%, rgba(27, 42, 78, 0.3) 100%);
+            padding: 3rem;
+            border-radius: 20px;
+            border: 2px solid #4FC3F7;
+            box-shadow: 0 10px 40px rgba(79, 195, 247, 0.3);
+        }
+
+        .mission-box p {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: #ddd;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, #4FC3F7, #1B2A4E);
+        }
+
+        .timeline-item {
+            margin-bottom: 4rem;
+            position: relative;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeInUp 0.8s forwards;
+        }
+
+        .timeline-item:nth-child(1) { animation-delay: 0.2s; }
+        .timeline-item:nth-child(2) { animation-delay: 0.4s; }
+        .timeline-item:nth-child(3) { animation-delay: 0.6s; }
+        .timeline-item:nth-child(4) { animation-delay: 0.8s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .timeline-content {
+            width: 45%;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(27, 42, 78, 0.8) 0%, rgba(10, 25, 41, 0.8) 100%);
+            border-radius: 15px;
+            border: 2px solid #4FC3F7;
+            position: relative;
+            box-shadow: 0 5px 20px rgba(79, 195, 247, 0.3);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-left: auto;
+        }
+
+        .timeline-year {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #4FC3F7;
+            color: #1B2A4E;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 0 0 20px rgba(79, 195, 247, 0.6);
+        }
+
+        .timeline-content h3 {
+            color: #4FC3F7;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .timeline-content p {
+            color: #ddd;
+            line-height: 1.8;
+        }
+
+        /* Réseaux Sociaux */
+        .social-section {
+            background: linear-gradient(135deg, rgba(27, 42, 78, 0.8) 0%, rgba(10, 25, 41, 0.8) 100%);
+            padding: 4rem 2rem;
+            border-radius: 20px;
+            border: 2px solid #4FC3F7;
+            text-align: center;
+        }
+
+        .social-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .social-btn {
+            background: linear-gradient(135deg, #4FC3F7 0%, #2196F3 100%);
+            color: #1B2A4E;
+            text-decoration: none;
+            padding: 1.5rem 3rem;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: all 0.3s;
+            border: 2px solid #4FC3F7;
+            box-shadow: 0 5px 20px rgba(79, 195, 247, 0.4);
+        }
+
+        .social-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 40px rgba(79, 195, 247, 0.6);
+            background: linear-gradient(135deg, #64D8FF 0%, #4FC3F7 100%);
+        }
+
+        .social-btn::before {
+            content: '📱';
+            font-size: 2rem;
+        }
+
+        /* Partenaires */
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .partner-card {
+            background: linear-gradient(135deg, rgba(79, 195, 247, 0.15) 0%, rgba(27, 42, 78, 0.2) 100%);
+            padding: 2.5rem;
+            border-radius: 15px;
+            border: 2px solid #4FC3F7;
+            text-align: center;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+
+        .partner-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(79, 195, 247, 0.4);
+            border-color: #64D8FF;
+        }
+
+        .partner-card h3 {
+            color: #4FC3F7;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .partner-card p {
+            color: #ddd;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .partner-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #4FC3F7 0%, #2196F3 100%);
+            color: #1B2A4E;
+            text-decoration: none;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+
+        .partner-link:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 20px rgba(79, 195, 247, 0.5);
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #1B2A4E 0%, #0a1929 100%);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+            border-top: 3px solid #4FC3F7;
+        }
+
+        footer p {
+            color: #fff;
+        }
+
+        footer a {
+            color: #4FC3F7;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        footer a:hover {
+            color: #64D8FF;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-content {
+                width: calc(100% - 60px);
+                margin-left: 60px !important;
+            }
+
+            .timeline-year {
+                left: 20px;
+                transform: translateX(0);
+            }
+
+            .social-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .partners-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==" alt="7 Nains Paintball Logo">
+            </a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div>
+            <h1>Le Club</h1>
+            <p>Notre Histoire, Notre Passion</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>Notre Mission</h2>
+        <div class="mission">
+            <div class="mission-box">
+                <p>Promouvoir le speedball en Eure-et-Loir et faire découvrir les sensations du paintball, mais surtout du paintball en compétition.</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Notre Histoire</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-year">1997</div>
+                <div class="timeline-content">
+                    <h3>🎯 Naissance</h3>
+                    <p>Créé par des passionnés de speedball, 7 Nains Paintball naît avec une mission claire : promouvoir le speedball en Eure-et-Loir et faire découvrir les sensations du paintball en compétition.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-year">2023</div>
+                <div class="timeline-content">
+                    <h3>🤝 Partenariat Chartres</h3>
+                    <p>Partenariat majeur avec la ville de Chartres, donnant naissance à C'Chartres Paintball (CCMP). Une nouvelle ère commence pour le développement du paintball dans la région.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-year">2024</div>
+                <div class="timeline-content">
+                    <h3>🏆 Montée en Puissance</h3>
+                    <p>Début d'organisation de manches de ligue sur le terrain de Saint-George (SGSE) grâce à la collaboration avec Drouais Paintball. Le club s'affirme comme un acteur majeur du paintball compétitif régional.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-year">2025</div>
+                <div class="timeline-content">
+                    <h3>🚀 Expansion</h3>
+                    <p>Pole Sensation arrive en partenaire pour des événements multi-activités. Le club diversifie son offre et renforce sa présence sur le territoire.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="social-section">
+            <h2 style="color: #fff; margin-bottom: 1rem;">Rejoignez la Communauté</h2>
+            <p style="color: #ddd; font-size: 1.2rem; margin-bottom: 2rem;">Suivez nos actualités, événements et compétitions !</p>
+            <div class="social-buttons">
+                <a href="https://www.facebook.com/profile.php?id=61550807393056" target="_blank" class="social-btn">
+                    Suivez-nous sur Facebook
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Nos Partenaires</h2>
+        <div class="partners-grid">
+            <div class="partner-card">
+                <h3>C'Chartres Paintball</h3>
+                <p>Partenariat avec la ville de Chartres pour promouvoir le paintball dans l'agglomération chartraine.</p>
+                <span style="color: #4FC3F7; font-style: italic;">Ville de Chartres</span>
+            </div>
+
+            <div class="partner-card">
+                <h3>Drouais Paintball</h3>
+                <p>Collaboration pour l'organisation de manches de ligue et le développement du paintball compétitif en Eure-et-Loir.</p>
+                <a href="https://www.facebook.com/profile.php?id=61579116171996" target="_blank" class="partner-link">Voir leur page</a>
+            </div>
+
+            <div class="partner-card">
+                <h3>Pole Sensations</h3>
+                <p>Partenaire pour des événements multi-activités alliant paintball et autres activités outdoor.</p>
+                <a href="https://polesensations.fr/" target="_blank" class="partner-link">Visiter leur site</a>
+            </div>
+        </div>
+    </section>
+
+<section>
+        <div style="text-align: center; padding: 3rem; background: linear-gradient(135deg, rgba(79, 195, 247, 0.15) 0%, rgba(27, 42, 78, 0.2) 100%); border-radius: 20px; border: 2px solid #4FC3F7; margin: 0 2rem;">
+            <h2 style="margin-bottom: 2rem; color: #4FC3F7;">Découvrez Notre Équipe</h2>
+            <p style="color: #ddd; font-size: 1.2rem; margin-bottom: 2rem;">Rencontrez les joueurs qui composent notre roster 3v3 !</p>
+            <a href="equipe.html" style="display: inline-block; background: linear-gradient(135deg, #4FC3F7, #2196F3); color: #1B2A4E; padding: 1.5rem 3rem; border-radius: 50px; text-decoration: none; font-size: 1.3rem; font-weight: bold;">
+                Voir les joueurs →
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 7 Nains Paintball - Tous droits réservés</p>
+        <p><a href="index.html">← Retour à l'accueil</a></p>
+    </footer>
+
+    <script>
+        // Animation au scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.partner-card, .mission-box').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.8s ease-out';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
